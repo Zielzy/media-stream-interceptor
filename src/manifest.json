@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Media Stream Interceptor",
+  "version": "1.0.0",
+  "description": "Sniff, inspect, and extract HTTP headers from HLS (.m3u8), DASH (.mpd), and MP4 media streams.",
+  "author": "Zielzy",
+  "homepage_url": "https://github.com/Zielzy/media-stream-interceptor",
+  "permissions": [
+    "webRequest",
+    "storage",
+    "tabs",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background/service-worker.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "assets/icon-16.png",
+      "48": "assets/icon-48.png",
+      "128": "assets/icon-128.png"
+    }
+  },
+  "options_ui": {
+    "page": "options/settings.html",
+    "open_in_tab": true
+  },
+  "icons": {
+    "16": "assets/icon-16.png",
+    "48": "assets/icon-48.png",
+    "128": "assets/icon-128.png"
+  }
+}

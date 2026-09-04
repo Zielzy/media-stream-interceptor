@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings — Media Stream Interceptor</title>
+  <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+  <div class="settings-container">
+    <!-- Header -->
+    <header class="settings-header">
+      <div class="brand">
+        <img src="../assets/icon-48.png" alt="Logo" class="logo">
+        <div>
+          <h1>Media Stream Interceptor</h1>
+          <p class="subtitle">Configuration & Webhook Settings</p>
+        </div>
+      </div>
+      <a href="https://github.com/Zielzy/media-stream-interceptor" target="_blank" class="github-link">
+        GitHub Repository ↗
+      </a>
+    </header>
+
+    <!-- Webhook Card -->
+    <section class="settings-card">
+      <div class="card-header">
+        <h2>Webhook Auto-Forwarding</h2>
+        <p>Automatically forward captured video streams and HTTP headers to a local or remote server.</p>
+      </div>
+
+      <div class="form-group">
+        <label class="toggle-control">
+          <input type="checkbox" id="webhookEnabled">
+          <span class="toggle-slider"></span>
+          <span class="toggle-label">Enable Webhook Auto-Forwarding</span>
+        </label>
+        <span class="form-hint">When enabled, any new stream sniffed in the browser is sent via HTTP POST to the target URL below.</span>
+      </div>
+
+      <div class="form-group">
+        <label for="webhookUrl" class="form-label">Webhook Endpoint URL</label>
+        <div class="input-with-action">
+          <input type="url" id="webhookUrl" class="form-input" placeholder="http://localhost:8080/webhook">
+          <button id="testWebhookBtn" class="btn btn-secondary">Test Connection</button>
+        </div>
+        <span class="form-hint">Enter any local or remote HTTP endpoint that accepts JSON POST requests.</span>
+        <div id="testResult" class="test-result"></div>
+      </div>
+    </section>
+
+    <!-- Sniffer Preferences Card -->
+    <section class="settings-card">
+      <div class="card-header">
+        <h2>Sniffer Filters</h2>
+        <p>Tune which network media patterns are recorded.</p>
+      </div>
+
+      <div class="form-group">
+        <label class="toggle-control">
+          <input type="checkbox" id="filterSegments">
+          <span class="toggle-slider"></span>
+          <span class="toggle-label">Filter Out TS / M4S Media Segments (Recommended)</span>
+        </label>
+        <span class="form-hint">When active, individual chunks (like .ts fragments) are hidden so only master playlists (.m3u8) and direct files are captured.</span>
+      </div>
+
+      <div class="form-group">
+        <label for="maxStreamsPerTab" class="form-label">Max Streams Kept Per Tab</label>
+        <input type="number" id="maxStreamsPerTab" class="form-input" min="10" max="200" step="5" style="max-width: 120px;">
+        <span class="form-hint">Limits memory consumption by pruning oldest streams when cap is reached.</span>
+      </div>
+    </section>
+
+    <!-- Footer Save Bar -->
+    <div class="save-bar">
+      <span id="saveStatus" class="save-status"></span>
+      <button id="saveBtn" class="btn btn-primary">Save Changes</button>
+    </div>
+  </div>
+
+  <script src="settings.js"></script>
+</body>
+</html>
